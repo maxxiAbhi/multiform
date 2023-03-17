@@ -1,22 +1,25 @@
 import React from 'react'
 
-function Form({ lable1, type1, lable2, type2, maxStep, stepNo }) {
+function Form({label,fildname,register,fildType,errors}) {  
+    // console.log(errors===undefined) 
+    // console.log(errors)
+    // if(errors!==undefined){
+    //     // console.log(typeof errors[fildname])
+    //     console.log(typeof errors[fildname]===typeof {})
+    //     if(typeof errors[fildname]===typeof {}){
+    //         console.log(errors[fildname])
+    //     }
+    // }
     return (
         <>
-            <form>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">{lable1}</label>
-                    <input type={type1} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                <div className="mb-3">
+                    <label className="form-label">{label}</label>
+                    <input type={fildType} {...register(fildname, { required: false })} />
+                    {/* {errors!==undefined?null:typeof errors[fildname]===typeof {}?errors[fildname] && <span style={{color:'red'}}>This field is required</span>:null} */}
+                    {/* {
+                        errors!==undefined?(typeof errors[fildname]===typeof {}?errors[fildname].type === 'required' && <span style={{color:'red'}}>This field is required</span>:null):null
+                    } */}
                 </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">{lable2}</label>
-                    <input type={type2} class="form-control" id="exampleInputPassword1" />
-                </div>
-                {
-                    stepNo === maxStep ? <button type="submit" class="btn btn-primary">Submit</button> : null
-                }
-
-            </form>
         </>
     )
 }
